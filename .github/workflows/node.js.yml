@@ -16,8 +16,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+      # - name: Use Node.js ${{ matrix.node-version }}
+      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
           node-version: ${{ matrix.node-version }}
           cache: "yarn"
