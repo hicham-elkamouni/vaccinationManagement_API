@@ -17,7 +17,7 @@ app.use(limiter);
 app.get("/hello", (req: Request, res: Response) => {
   res.send("Hello World 👋");
 });
-
+ 
 const port = process.env.PORT || 3000;
 const host = process.env.APP_HOSTNAME || "localhost";
 const url = process.env.APP_URL || `http://${host}:${port}`;
