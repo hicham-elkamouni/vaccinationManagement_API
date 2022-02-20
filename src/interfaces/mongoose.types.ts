@@ -3,11 +3,12 @@ import { Document } from "mongoose";
 export interface IUser extends Document {
   cin: string;
   address: string;
-  fName:string;
-  lName:string;
+  fName: string;
+  lName: string;
   city: string;
   nbrPhone: number;
-  diseaseOrTreatments?:string;
-  sideEffects1stVaccine?:string;
-  sideEffects2stVaccine?:string;
+  shotTaken: number;
+  diseaseOrTreatments?: string;
+  sideEffects1stVaccine?: string;
+  sideEffects2stVaccine?: string;
 }

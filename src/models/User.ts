@@ -35,6 +35,11 @@ const schema = new Schema<IUser>(
             required: true,
             trim: true,
         },
+        shotTaken: {
+            type: Number,
+            required: true,
+            default: 1,
+        },
         diseaseOrTreatments: {
             type: String,
             trim: true,
