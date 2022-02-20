@@ -1,13 +1,52 @@
 import { Schema, model } from "mongoose";
-import { IUser } from "@interfaces/mongoose.types";
+import { IUser } from "@interfaces/index";
 
 
 const schema = new Schema<IUser>(
     {
-        name: {
-        type: String,
-        required: true,
-        }
+        lName: {
+            type: String,
+            required: true,
+            trim: true,
+        },
+        fName: {
+            type: String,
+            required: true,
+            trim: true,
+        },
+        cin: {
+            type: String,
+            required: true,
+            trim: true,
+            unique: true,
+        },
+        address: {
+            type: String,
+            required: true,
+            trim: true,
+        },
+        city: {
+            type: String,
+            required: true,
+            trim: true,
+        },
+        nbrPhone: {
+            type: Number,
+            required: true,
+            trim: true,
+        },
+        diseaseOrTreatments: {
+            type: String,
+            trim: true,
+        },
+        sideEffects1stVaccine: {
+            type: String,
+            trim: true,
+        },
+        sideEffects2stVaccine: {
+            type: String,
+            trim: true,
+        },
     },
     { timestamps: true }
 );
