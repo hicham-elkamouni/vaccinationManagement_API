@@ -2,13 +2,13 @@ import { User } from "@models/User";
 import { Request, Response } from "express";
 import { RegisterUser } from "@interfaces/index";
 
-const getUser = async (req: Request, res: Response) => {
+const getUsers = async (req: Request, res: Response) => {
 
     try {
-        const doc = await User.find({ name: "hicham" });
+        const docs = await User.find({});
         res.status(200).json({
             status: true,
-            message: doc,
+            message: docs,
         });
     } catch (err) {
         res.status(400).json({
@@ -61,4 +61,4 @@ const checkShotChoice = async (existShot: number, newShot: number) => {
         return false
 }
 
-export { getUser, registerUser }
+export { getUsers, registerUser }
