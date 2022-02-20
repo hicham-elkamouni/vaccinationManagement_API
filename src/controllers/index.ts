@@ -1,3 +1,3 @@
 // export default {};
 
-export { getUser } from "./user";
+export { getUser } from "./userController";

@@ -17,4 +17,5 @@ const getUser = async (req: Request, res: Response) => {
     }
 };
 
+
 export { getUser }

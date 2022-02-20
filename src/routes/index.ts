@@ -1,3 +1,3 @@
 // export default {};
 
-export { router as user } from "@routes/user";
+export { router as user } from "@routes/userRouter";
