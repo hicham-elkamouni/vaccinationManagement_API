@@ -12,3 +12,8 @@ export interface IUser extends Document {
   sideEffects1stVaccine?: string;
   sideEffects2stVaccine?: string;
 }
+export interface IManager extends Document {
+  fName : string;
+  lName : string;
+  area : string;
+}
