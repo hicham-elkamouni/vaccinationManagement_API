@@ -1,6 +1,6 @@
 import { User } from "@models/User";
 import { Request, Response } from "express";
-import { RegisterUser } from "@interfaces/index";
+import { IUser } from "@interfaces/index";
 
 const getUsers = async (req: Request, res: Response) => {
 
@@ -19,7 +19,9 @@ const getUsers = async (req: Request, res: Response) => {
 };
 
 const registerUser = async (req: Request, res: Response) => {
-    const data = req.body as RegisterUser
+    const data = req.body as IUser
+    data.cin
+    
     try {
         const userExists: any = await User.findOne({ cin: data.cin })
 
@@ -44,7 +46,6 @@ const registerUser = async (req: Request, res: Response) => {
                     message: "take a valid shot please ",
                 });
             }
-
         }
     } catch (err: any) {
         res.status(400).json({
