@@ -3,6 +3,7 @@ import { Document } from "mongoose";
 export interface IUser extends Document {
   cin: string;
   address: string;
+  email: string;
   fName: string;
   lName: string;
   city: string;
