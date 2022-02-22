@@ -1,1 +1,1 @@
-export { IUser } from "./mongoose.types"
+export { IUser, IManager } from "./mongoose.types"
