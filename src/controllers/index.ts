@@ -1,4 +1,4 @@
 // export default {};
 
-export { getUsers, registerUser } from "./userController";
+export { getUsers, registerUser, cinCheck } from "./userController";
 export { addCenter } from "./centerController";
