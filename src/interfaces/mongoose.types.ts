@@ -18,3 +18,7 @@ export interface IManager extends Document {
   lName : string;
   area : string;
 }
+export interface ICenter extends Document {
+  name : string;
+  createdBy : Object;
+}

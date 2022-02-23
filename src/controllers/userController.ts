@@ -20,7 +20,6 @@ const getUsers = async (req: Request, res: Response) => {
 
 const registerUser = async (req: Request, res: Response) => {
     const data = req.body as IUser
-    data.cin
     
     try {
         const userExists: any = await User.findOne({ cin: data.cin })
