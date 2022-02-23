@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get("/getUsers", getUsers);
 router.post("/registerUser", registerUser);
-router.post("/check", cin_shot_Check);
+router.get("/check/:cin/:shot", cin_shot_Check);
 router.post("/addCenter", addCenter);
 
 export { router };

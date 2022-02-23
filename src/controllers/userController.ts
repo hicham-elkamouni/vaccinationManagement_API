@@ -19,25 +19,27 @@ const getUsers = async (req: Request, res: Response) => {
 };
 
 const cin_shot_Check = async (req: Request, res: Response) => {
-    const data = req.body as IUser
-    try {
-        const doc: IUser | null = await User.findOne({ cin: data.cin })
+    const {cin , shot} = req.params
+    const shotTaken = Number(shot)
 
-        if (!doc && data.shotTaken == 1) {
+    try {
+        const doc: IUser | null = await User.findOne({ cin:cin })
+
+        if (!doc && shotTaken == 1) {
             res.status(201).json({
                 status: true,
                 exist: false,
                 message: "complete your information",
             });
         }
-        else if (!doc && data.shotTaken != 1) {
+        else if (!doc && shotTaken != 1) {
             res.status(201).json({
                 status: false,
                 exist: false,
                 message: "take a valid shot please",
             });
         }
-        else if (doc && await checkShotChoice(doc?.shotTaken, data.shotTaken)) {
+        else if (doc && await checkShotChoice(doc?.shotTaken, shotTaken)) {
             res.status(201).json({
                 status: false,
                 exist: true,
