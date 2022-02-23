@@ -5,11 +5,12 @@ import compression from "compression";
 import { limiter } from "@middlewares/limiter";
 import helmet from "helmet";
 import { user , manager } from '@routes/index';
+import cors from 'cors';
 
 const app = express();
 // change default environment path
 dotenv.config({ path: "./.env" });
-
+app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(compression());
