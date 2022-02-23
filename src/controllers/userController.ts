@@ -29,6 +29,7 @@ const cin_shot_Check = async (req: Request, res: Response) => {
             res.status(201).json({
                 status: true,
                 exist: false,
+                next:true,
                 message: "complete your information",
             });
         }
@@ -36,6 +37,7 @@ const cin_shot_Check = async (req: Request, res: Response) => {
             res.status(201).json({
                 status: false,
                 exist: false,
+                next:false,
                 message: "take a valid shot please",
             });
         }
@@ -43,12 +45,14 @@ const cin_shot_Check = async (req: Request, res: Response) => {
             res.status(201).json({
                 status: false,
                 exist: true,
+                next:true,
                 message: doc,
             });
         } else {
             res.status(201).json({
                 status: false,
                 exist: true,
+                next:false,
                 message: "take a valid shot please ",
             });
         }
