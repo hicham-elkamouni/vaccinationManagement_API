@@ -18,7 +18,7 @@ const getUsers = async (req: Request, res: Response) => {
     }
 };
 
-const cinCheck = async (req: Request, res: Response) => {
+const cin_shot_Check = async (req: Request, res: Response) => {
     const data = req.body as IUser
     try {
         const doc: IUser | null = await User.findOne({ cin: data.cin })
@@ -102,4 +102,4 @@ const checkShotChoice = async (existShot: number, newShot: number) => {
         return false
 }
 
-export { getUsers, registerUser, cinCheck }
+export { getUsers, registerUser, cin_shot_Check }
