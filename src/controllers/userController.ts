@@ -1,6 +1,7 @@
 import { User } from "@models/User";
 import { Request, Response } from "express";
 import { IUser } from "@interfaces/index";
+import { appointmentMail, vaccinatedUserMail } from "@utils/index"
 
 const getUsers = async (req: Request, res: Response) => {
 
@@ -71,15 +72,18 @@ const registerUser = async (req: Request, res: Response) => {
     try {
         const doc: any = await User.findOne({ cin: data.cin })
 
+        let date = await appointmentDate()
         if (!doc && data.shotTaken == 1) {
             const user = new User(data)
             await user.save();
+            appointmentMail(data, date)
             res.status(201).json({
                 status: true,
                 message: "You can take your First shot",
             });
         } else {
             await doc.updateOne({ shotTaken: data.shotTaken }, { new: true })
+            data.shotTaken != 3 ? appointmentMail(data, date) : vaccinatedUserMail(data)
             res.status(201).json({
                 status: true,
                 message: `You can take your ${data.shotTaken == 2 ? "Second" : "Third"} shot`,
@@ -98,6 +102,13 @@ const checkShotChoice = async (existShot: number, newShot: number) => {
         return true;
     else
         return false
+}
+
+const appointmentDate = async () => {
+    let nextMonth = new Date().getTime() + 2.628e+9;
+    let date = new Date(nextMonth)
+    let appointment = date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate();
+    return appointment
 }
 
 export { getUsers, registerUser, cin_shot_Check }
