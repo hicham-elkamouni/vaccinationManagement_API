@@ -19,17 +19,17 @@ const getUsers = async (req: Request, res: Response) => {
 };
 
 const cin_shot_Check = async (req: Request, res: Response) => {
-    const {cin , shot} = req.params
+    const { cin, shot } = req.params
     const shotTaken = Number(shot)
 
     try {
-        const doc: IUser | null = await User.findOne({ cin:cin })
+        const doc: IUser | null = await User.findOne({ cin: cin })
 
         if (!doc && shotTaken == 1) {
             res.status(201).json({
                 status: true,
                 exist: false,
-                next:true,
+                next: true,
                 message: "complete your information",
             });
         }
@@ -37,7 +37,7 @@ const cin_shot_Check = async (req: Request, res: Response) => {
             res.status(201).json({
                 status: false,
                 exist: false,
-                next:false,
+                next: false,
                 message: "take a valid shot please",
             });
         }
@@ -45,14 +45,14 @@ const cin_shot_Check = async (req: Request, res: Response) => {
             res.status(201).json({
                 status: false,
                 exist: true,
-                next:true,
+                next: true,
                 message: doc,
             });
         } else {
             res.status(201).json({
                 status: false,
                 exist: true,
-                next:false,
+                next: false,
                 message: "take a valid shot please ",
             });
         }
@@ -69,29 +69,21 @@ const registerUser = async (req: Request, res: Response) => {
     const data = req.body as IUser
 
     try {
-        const userExists: any = await User.findOne({ cin: data.cin })
+        const doc: any = await User.findOne({ cin: data.cin })
 
-        if (!userExists && data.shotTaken == 1) {
-            const doc = new User(data)
-            await doc.save();
+        if (!doc && data.shotTaken == 1) {
+            const user = new User(data)
+            await user.save();
             res.status(201).json({
                 status: true,
                 message: "You can take your First shot",
             });
-
         } else {
-            if (await checkShotChoice(userExists?.shotTaken, data.shotTaken)) {
-                await userExists.updateOne({ shotTaken: data.shotTaken }, { new: true })
-                res.status(201).json({
-                    status: true,
-                    message: `You can take your ${data.shotTaken == 2 ? "Second" : "Third"} shot`,
-                });
-            } else {
-                res.status(201).json({
-                    status: false,
-                    message: "take a valid shot please ",
-                });
-            }
+            await doc.updateOne({ shotTaken: data.shotTaken }, { new: true })
+            res.status(201).json({
+                status: true,
+                message: `You can take your ${data.shotTaken == 2 ? "Second" : "Third"} shot`,
+            });
         }
     } catch (err: any) {
         res.status(400).json({
