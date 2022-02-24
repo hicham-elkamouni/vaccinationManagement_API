@@ -24,6 +24,7 @@ const addCenter = async (req: Request, res: Response) => {
 }
 
 // REMOVE CENTER
+
 // UPDATE CENTER 
 // GET ONE CENTER
 // GET ALL CENTER
