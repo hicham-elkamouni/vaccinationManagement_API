@@ -6,7 +6,6 @@ import { ICenter } from '@interfaces/index'
 const addCenter = async (req: Request, res: Response) => {
 
     const data = req.body as ICenter
-    console.table(data);
 
     try {
         const doc = new Center(data)
@@ -102,9 +101,31 @@ const getCenter = async (req: Request, res: Response) => {
 }
 
 // UPDATE CENTER 
+const updateCenter = async (req: Request, res: Response) => {
 
+    const { id } = req.params
+    const body = req.body
 
-export { addCenter , deleteCenter , getAllCenters ,getCenter}
+    console.log(body);
+    console.log({id});
+
+    try {
+        await Center.findOneAndUpdate({_id : id},body);
+        return res.status(200).json({
+            status : true,
+            message : "updated successfully !!!"
+        })
+        
+    }catch(err:any){
+        return res.status(400).json({
+            status : false,
+            message: err.message
+        })
+    }
+
+}
+
+export { getAllCenters ,getCenter , addCenter , deleteCenter , updateCenter }
 
 function findOneAndDelete(arg0: { _id: string; }) {
     throw new Error('Function not implemented.');
