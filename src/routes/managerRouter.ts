@@ -1,11 +1,11 @@
-import { addCenter, deleteCenter , getAllCenters } from "@controllers/centerController";
+import { addCenter, deleteCenter , getAllCenters , getCenter} from "@controllers/centerController";
 import express from "express";
 const router = express.Router();
 
-router.post("/addCenter", addCenter);
-router.delete("/deleteCenter/:id", deleteCenter);
 router.get("/getAllCenters", getAllCenters);
-// router.get("/getCenter/:id", getCenter);
+router.post("/addCenter", addCenter);
+router.get("/getCenter/:id", getCenter);
+router.delete("/deleteCenter/:id", deleteCenter);
 // router.delete("/updateCenter/:id", updateCenter);
 
 export { router };

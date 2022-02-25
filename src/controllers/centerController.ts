@@ -76,11 +76,35 @@ const getAllCenters = async (req: Request, res: Response) => {
 }
 
 // GET ONE CENTER
+const getCenter = async (req: Request, res: Response) => {
+
+    const { id } = req.params
+
+    try {
+        const doc = await Center.find({_id : id});
+        if(doc.length > 0) {
+            return res.status(200).json({
+                status : true,
+                message : doc
+            })
+        }else{ 
+            return res.status(200).json({
+                status : true,
+                message : "this center doesn't exist"
+            })
+        }
+    }catch(err:any){
+        return res.status(400).json({
+            status : false,
+            message: err.message
+        })
+    }
+}
 
 // UPDATE CENTER 
 
 
-export { addCenter , deleteCenter , getAllCenters}
+export { addCenter , deleteCenter , getAllCenters ,getCenter}
 
 function findOneAndDelete(arg0: { _id: string; }) {
     throw new Error('Function not implemented.');
