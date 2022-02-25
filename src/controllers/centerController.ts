@@ -1,5 +1,5 @@
 import { Center } from '@models/Center'
-import { Request , Response } from "express";
+import { Request, Response } from "express";
 import { ICenter } from '@interfaces/index'
 
 // ADD CENTER
@@ -8,16 +8,16 @@ const addCenter = async (req: Request, res: Response) => {
     const data = req.body as ICenter
     console.table(data);
 
-    try{
+    try {
         const doc = new Center(data)
-        await doc.save(); 
+        await doc.save();
         return res.status(201).json({
-            status : true,
-            message : doc
+            status: true,
+            message: doc
         })
-    }catch(err: any){
+    } catch (err: any) {
         return res.status(400).json({
-            status : false,
+            status: false,
             message: err.message
         })
     }
@@ -29,17 +29,17 @@ const deleteCenter = async (req: Request, res: Response) => {
     const { id } = req.params
 
     try {
-    const deletedDocument = await Center.findOneAndRemove({ _id: id })
+        const deletedDocument = await Center.findOneAndRemove({ _id: id })
 
-        if (deletedDocument){
+        if (deletedDocument) {
             res.status(200).json({
-            status: true,
-            message: "deleted successfully"
+                status: true,
+                message: "deleted successfully"
             })
-        }else{
+        } else {
             res.status(200).json({
-            status: true,
-            message: "this id doesn't exist"
+                status: true,
+                message: "this id doesn't exist"
             })
         }
 
