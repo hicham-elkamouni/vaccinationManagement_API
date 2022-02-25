@@ -43,37 +43,44 @@ const deleteCenter = async (req: Request, res: Response) => {
             })
         }
 
-    } catch (e) {
+    } catch (err:any) {
         res.status(400).json({
             status: false,
-            message: e.message
+            message: err.message
         })
     }
-    // try { 
-    // }catch(err: any){
-
-    // }
-    // try{
-    //     const doc = new Center(data)
-    //     await doc.save(); 
-    //     return res.status(201).json({
-    //         status : true,
-    //         message : doc
-    //     })
-    // }catch(err: any){
-    //     return res.status(400).json({
-    //         status : false,
-    //         message: err.message
-    //     })
-    // }
+    
 }
+// GET ALL CENTER
+const getAllCenters = async (req: Request, res: Response) => {
+
+    try {
+        const docs = await Center.find();
+        if (docs.length > 0) {
+            return res.status(200).json({
+                status : true,
+                message : docs
+            })
+        }else{
+            return res.status(200).json({
+                status : true,
+                message : "there's no center right now !"
+            })
+        }
+    }catch(err:any){
+        return res.status(400).json({
+            status : false,
+            message: err.message
+        })
+    }
+}
+
+// GET ONE CENTER
 
 // UPDATE CENTER 
 
-// GET ONE CENTER
-// GET ALL CENTER
 
-export { addCenter , deleteCenter}
+export { addCenter , deleteCenter , getAllCenters}
 
 function findOneAndDelete(arg0: { _id: string; }) {
     throw new Error('Function not implemented.');
