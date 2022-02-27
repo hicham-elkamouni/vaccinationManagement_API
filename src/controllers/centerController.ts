@@ -50,11 +50,13 @@ const deleteCenter = async (req: Request, res: Response) => {
     }
     
 }
-// GET ALL CENTER
+// GET ALL CENTERS
 const getAllCenters = async (req: Request, res: Response) => {
 
+    const queryStrings = req.query
     try {
-        const docs = await Center.find();
+        const docs = await Center.find(queryStrings);
+        console.log(docs);
         if (docs.length > 0) {
             return res.status(200).json({
                 status : true,
