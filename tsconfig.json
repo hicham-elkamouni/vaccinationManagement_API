@@ -21,7 +21,7 @@
       "@middlewares/*": ["middlewares/*"],
       "@interfaces/*": ["interfaces/*"],
       "@errors/*": ["errors/*"],
-      "@config/*": ["config/*"]
+      "@config/*": ["config/*"],
     }
   },
   "exclude": ["build", "tests", "node_modules"],
