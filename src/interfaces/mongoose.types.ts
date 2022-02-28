@@ -20,5 +20,7 @@ export interface IManager extends Document {
 }
 export interface ICenter extends Document {
   name : string;
+  city : string;
+  area : string;
   createdBy : Object;
 }
