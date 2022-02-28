@@ -1,4 +1,4 @@
 // export default {};
 
-export { router as user } from "@routes/userRouter";
-export { router as manager } from "@routes/managerRouter";
+export { router as userRouter } from "@routes/userRouter";
+export { router as managerRouter } from "@routes/managerRouter";

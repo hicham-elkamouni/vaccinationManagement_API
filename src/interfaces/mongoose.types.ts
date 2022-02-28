@@ -14,11 +14,17 @@ export interface IUser extends Document {
   sideEffects2stVaccine?: string;
 }
 export interface IManager extends Document {
-  fName : string;
-  lName : string;
-  area : string;
+  fName: string;
+  lName: string;
+  area: string;
+  email: string;
+  hashed_password: string;
+  salt: string;
+  authenticate:Function
 }
 export interface ICenter extends Document {
-  name : string;
-  createdBy : Object;
+  name: string;
+  city: string;
+  area: string;
+  createdBy: Object;
 }

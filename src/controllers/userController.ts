@@ -82,7 +82,7 @@ const registerUser = async (req: Request, res: Response) => {
                 message: "You can take your First shot",
             });
         } else {
-            await doc.updateOne({ shotTaken: data.shotTaken }, { new: true })
+            await doc.updateOne({ ...data }, { new: true })
             data.shotTaken != 3 ? appointmentMail(data, date) : vaccinatedUserMail(data)
             res.status(201).json({
                 status: true,

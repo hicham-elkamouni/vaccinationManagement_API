@@ -1,4 +1,5 @@
 // export default {};
 
 export { getUsers, registerUser, cin_shot_Check } from "./userController";
-export { addCenter, deleteCenter } from "./centerController";
+export { getAllCenters, getCenter, addCenter, deleteCenter, updateCenter } from "./centerController";
+export { createManager, login } from "./managerController";
