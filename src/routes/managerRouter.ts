@@ -13,7 +13,7 @@ import { Auth } from "@middlewares/index";
 
 
 
-router.get("/getAllCenters", Auth, getAllCenters);
+router.get("/getAllCenters", getAllCenters);
 router.post("/addCenter", addCenter);
 router.get("/getCenter/:id", getCenter);
 router.delete("/deleteCenter/:id", deleteCenter);
