@@ -8,7 +8,7 @@ const addCenter = async (req: Request, res: Response) => {
     const data = req.body as ICenter
 
     try {
-        const doc = new Center(data)
+        const doc = new Center({...data,area : data.area.toLowerCase(), city : data.city.toLowerCase() })
         await doc.save();
         return res.status(201).json({
             status: true,
@@ -53,9 +53,9 @@ const deleteCenter = async (req: Request, res: Response) => {
 // GET ALL CENTERS
 const getAllCenters = async (req: Request, res: Response) => {
 
-    const queryStrings = req.query
+    const queryStrings = req.query as { area : string , city : string};
     try {
-        const docs = await Center.find(queryStrings);
+        const docs = await Center.find({area : queryStrings.area.toLowerCase(), city : queryStrings.city.toLowerCase()});
         console.log(docs);
         if (docs.length > 0) {
             return res.status(200).json({
