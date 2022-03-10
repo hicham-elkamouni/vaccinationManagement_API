@@ -1,14 +1,15 @@
 import { verifyToken } from "@utils/index";
 import { RequestHandler } from 'express';
+import { Request, Response, NextFunction } from 'express';
 
-
-const Auth: RequestHandler = async (req, res, next) => {
+const Auth = (role = "") => async (req: Request, res: Response, next: NextFunction) => {
     const bearer = req?.headers?.authorization;
+    
     if (!bearer) {
         return res.status(401).json({ error: "unauthorized" });
     }
     const token = bearer.split(" ")[1];
-    const payload = verifyToken(token);
+    const payload = verifyToken(token, role);
     if (!payload) {
         return res.status(401).json({ error: "unauthenticated" });
     }
