@@ -1,18 +1,39 @@
 import { IManager } from "@interfaces/mongoose.types";
 import jwt from "jsonwebtoken";
 // generate tokens :
-export const createToken = (payload: IManager | null = null) => {
+export const createToken = (payload: IManager | null = null, role: string | null = null) => {
   if (!payload) return null;
-  return jwt.sign({ payload }, process.env.SECRET_KEY_MANAGER as string, {
-    expiresIn: "1h",
-  });
+  if (!role) return null;
+  switch (role) {
+    case "MANAGER":
+      return jwt.sign({ payload }, process.env.SECRET_KEY_MANAGER as string, {
+        expiresIn: "1h",
+      });
+    case "ADMIN":
+      return jwt.sign({ payload }, process.env.SECRET_KEY_ADMIN as string, {
+        expiresIn: "1h",
+      });
+    default:
+      return null;
+  }
 };
 
-export const verifyToken = (token: string | null = null) => {
+export const verifyToken = (token: string | null = null, role: string | null = null) => {
   if (!token) return null;
-
+  if (!role) return null;
+  console.log("sdf");
+  
   try {
-    return jwt.verify(token, process.env.SECRET_KEY_MANAGER as string);
+    switch (role) {
+      case "MANAGER":
+        return jwt.verify(token, process.env.SECRET_KEY_MANAGER as string);
+        break;
+      case "ADMIN":
+        return jwt.verify(token, process.env.SECRET_KEY_ADMIN as string);
+        break;
+      default:
+        return null;
+    }
   } catch (err) {
     return null;
   }

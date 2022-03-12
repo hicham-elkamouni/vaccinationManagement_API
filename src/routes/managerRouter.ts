@@ -7,13 +7,15 @@ import {
     getCenter,
     updateCenter,
     createManager,
-    login
+    login,
+    isManager
 } from "@controllers/index";
 import { Auth } from "@middlewares/index";
 
 
+router.get("/isManager", Auth("MANAGER"), isManager);
 
-router.get("/getAllCenters", getAllCenters);
+router.get("/getAllCenters", Auth("MANAGER"), getAllCenters);
 router.post("/addCenter", addCenter);
 router.get("/getCenter/:id", getCenter);
 router.delete("/deleteCenter/:id", deleteCenter);
