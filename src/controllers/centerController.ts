@@ -6,9 +6,9 @@ import { ICenter } from '@interfaces/index'
 const addCenter = async (req: Request, res: Response) => {
 
     const data = req.body as ICenter
-
+    console.log(data);
     try {
-        const doc = new Center({...data,area : data.area.toLowerCase(), city : data.city.toLowerCase() })
+        const doc = new Center(data)
         await doc.save();
         return res.status(201).json({
             status: true,
@@ -53,10 +53,17 @@ const deleteCenter = async (req: Request, res: Response) => {
 // GET ALL CENTERS
 const getAllCenters = async (req: Request, res: Response) => {
 
-    const queryStrings = req.query as { area : string , city : string};
+    console.log("inside get all centers method")
+    const { area , city} = req.query as { area : string , city : string};
     try {
-        const docs = await Center.find({area : queryStrings.area.toLowerCase(), city : queryStrings.city.toLowerCase()});
-        console.log(docs);
+        let docs : ICenter[] = [];
+        if(area && city){
+            docs = await Center.find({area : area ,city : city });
+            console.log("inside condition")
+        }else{
+            docs = await Center.find({});
+            console.log("inside global results")
+        }
         if (docs.length > 0) {
             return res.status(200).json({
                 status : true,
