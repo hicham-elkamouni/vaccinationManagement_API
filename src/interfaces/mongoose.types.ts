@@ -20,7 +20,10 @@ export interface IManager extends Document {
   email: string;
   hashed_password: string;
   salt: string;
-  authenticate: Function
+  authenticate: Function;
+  createdAt:Date
+  updatedAt:Date
+
 }
 export interface IAdmin extends Document {
   userName: string;
