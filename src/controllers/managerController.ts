@@ -1,7 +1,7 @@
 import { Manager } from "@models/Manager";
 import { createToken } from "@utils/index";
-import { Request, Response } from "express";
-import { RequestHandler } from 'express';
+import { Request, Response, RequestHandler } from "express";
+
 const login = async (req: Request, res: Response) => {
     const {
         email,
@@ -29,8 +29,11 @@ const login = async (req: Request, res: Response) => {
             ? res.status(200).json({ isLogged: true, token, doc })
             : res.status(500).json({ isLogged: false, error: "cant create token" });
 
-    } catch (err) {
-        console.log(err);
+    } catch (e: any) {
+        res.status(400).json({
+            status: false,
+            message: e.message
+        });
     }
 
 }
@@ -57,7 +60,7 @@ const createManager = async (req: Request, res: Response) => {
 
 const isManager: RequestHandler = async (req, res) => {
     // If this function can be accessed, it means that this manager is logged in
-    res.status(400).json({
+    res.status(200).json({
         status: true,
         message: true
     })

@@ -21,7 +21,6 @@ export const createToken = (payload: IManager | null = null, role: string | null
 export const verifyToken = (token: string | null = null, role: string | null = null) => {
   if (!token) return null;
   if (!role) return null;
-  console.log("sdf");
   
   try {
     switch (role) {
