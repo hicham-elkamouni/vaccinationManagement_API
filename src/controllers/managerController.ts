@@ -1,8 +1,8 @@
 import { Manager } from "@models/Manager";
 import { createToken } from "@utils/index";
-import { Request, Response, RequestHandler } from "express";
+import { RequestHandler } from "express";
 
-const login = async (req: Request, res: Response) => {
+const login: RequestHandler = async (req, res) => {
     console.log("inside login route")
     const {
         email,
@@ -37,7 +37,7 @@ const login = async (req: Request, res: Response) => {
 
 }
 
-const createManager = async (req: Request, res: Response) => {
+const createManager: RequestHandler = async (req, res) => {
 
     const data = req.body
 
@@ -60,6 +60,31 @@ const createManager = async (req: Request, res: Response) => {
     }
 }
 
+const removeManager: RequestHandler = async (req, res) => {
+    try {
+        const { id } = req.params
+        const doc = await Manager.findById({ _id: id })//find the Driver
+        // check if exists
+        if (doc) {
+            // delete
+            await doc.remove()
+            res.status(200).json({
+                status: true,
+                message: "Deleted successfully"
+            })
+        } else {
+            res.status(404).json({
+                status: false,
+                message: "Not Found"
+            })
+        }
+    } catch (e: any) {
+        res.status(400).json({
+            status: false,
+            message: e.message
+        })
+    }
+}
 const isManager: RequestHandler = async (req, res) => {
     // If this function can be accessed, it means that this manager is logged in
     res.status(200).json({
@@ -67,4 +92,5 @@ const isManager: RequestHandler = async (req, res) => {
         message: true
     })
 }
-export { createManager, login, isManager }
+
+export { createManager, login, isManager, removeManager }
