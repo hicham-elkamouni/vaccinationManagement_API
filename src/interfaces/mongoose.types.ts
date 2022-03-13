@@ -20,7 +20,14 @@ export interface IManager extends Document {
   email: string;
   hashed_password: string;
   salt: string;
-  authenticate:Function
+  authenticate: Function
+}
+export interface IAdmin extends Document {
+  userName: string;
+  email: string;
+  hashed_password: string;
+  salt: string;
+  authenticate: Function
 }
 export interface ICenter extends Document {
   name: string;

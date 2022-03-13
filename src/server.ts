@@ -4,7 +4,7 @@ import { connectDB } from '@config/database';
 import compression from "compression";
 import { limiter } from "@middlewares/limiter";
 import helmet from "helmet";
-import { userRouter, managerRouter } from '@routes/index';
+import { userRouter, managerRouter, adminRouter } from '@routes/index';
 import cors from 'cors';
 
 const app = express();
@@ -20,6 +20,7 @@ app.use(limiter);
 // All routes should live here
 app.use('/api/user', userRouter);
 app.use('/api/manager', managerRouter);
+app.use('/api/admin', adminRouter);
 
 const port = process.env.PORT || 3000;
 const host = process.env.APP_HOSTNAME || "localhost";

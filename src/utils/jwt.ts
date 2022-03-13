@@ -1,7 +1,7 @@
-import { IManager } from "@interfaces/mongoose.types";
+// import { IManager } from "@interfaces/mongoose.types";
 import jwt from "jsonwebtoken";
 // generate tokens :
-export const createToken = (payload: IManager | null = null, role: string | null = null) => {
+export const createToken = (payload: any | null = null, role: string | null = null) => {
   if (!payload) return null;
   if (!role) return null;
   switch (role) {

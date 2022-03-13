@@ -22,8 +22,8 @@ const login = async (req: Request, res: Response) => {
                 error: 'Email and Password dont Match !'
             })
         }
-        const token = createToken(doc);
-        res.cookie('token', token, { expires: new Date(Date.now() + 4 * 3600000)})
+        const token = createToken(doc, "MANAGER");
+        res.cookie('token', token, { expires: new Date(Date.now() + 4 * 3600000) })
         return token
             ? res.status(200).json({ isLogged: true, token, doc })
             : res.status(500).json({ isLogged: false, error: "cant create token" });
