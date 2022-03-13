@@ -3,6 +3,7 @@ import { createToken } from "@utils/index";
 import { Request, Response, RequestHandler } from "express";
 
 const login = async (req: Request, res: Response) => {
+    console.log("inside login route")
     const {
         email,
         password
@@ -21,10 +22,8 @@ const login = async (req: Request, res: Response) => {
                 error: 'Email and Password dont Match !'
             })
         }
-        const token = createToken(doc, "MANAGER");
-        res.cookie('token', token, {
-            expires: new Date(Date.now() + 4 * 3600000)
-        })
+        const token = createToken(doc);
+        res.cookie('token', token, { expires: new Date(Date.now() + 4 * 3600000)})
         return token
             ? res.status(200).json({ isLogged: true, token, doc })
             : res.status(500).json({ isLogged: false, error: "cant create token" });
@@ -45,6 +44,9 @@ const createManager = async (req: Request, res: Response) => {
     try {
         const manager = new Manager(data);
         await manager.save()
+
+        const docs = await Manager.find({});
+        console.log(docs);
 
         res.status(201).json({
             status: true,

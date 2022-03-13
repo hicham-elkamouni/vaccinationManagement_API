@@ -23,8 +23,8 @@ const schema = new Schema<IManager>(
         email: {
             type: String,
             trim: true,
-            required: true,
-            unique: true,
+            required: false,
+            unique: false,
         },
         hashed_password: {
             type: String,
