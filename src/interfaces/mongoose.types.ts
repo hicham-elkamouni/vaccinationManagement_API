@@ -6,7 +6,9 @@ export interface IUser extends Document {
   email: string;
   fName: string;
   lName: string;
+  center: string;
   city: string;
+  area: string;
   nbrPhone: number;
   shotTaken: number;
   diseaseOrTreatments?: string;

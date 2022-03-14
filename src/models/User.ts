@@ -30,7 +30,17 @@ const schema = new Schema<IUser>(
             required: true,
             trim: true,
         },
+        center: {
+            type: String,
+            required: true,
+            trim: true,
+        },
         city: {
+            type: String,
+            required: true,
+            trim: true,
+        },
+        area: {
             type: String,
             required: true,
             trim: true,
