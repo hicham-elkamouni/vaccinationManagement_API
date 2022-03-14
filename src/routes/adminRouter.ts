@@ -7,10 +7,13 @@ import {
     removeManager,
     getManager,
     getAllManagers,
-    updateManager
+    updateManager,
+    isAdmin
 } from "@controllers/index";
+import { Auth } from "@middlewares/index";
 
-router.post("/loginAdmin", loginAdmin);
+router.get("/isAdmin", Auth("ADMIN"), isAdmin);
+router.post("/login", loginAdmin);
 router.post("/createManager", createManager);
 router.delete("/removeManager/:id", removeManager);
 router.get("/getManager/:id", getManager);

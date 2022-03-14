@@ -37,4 +37,12 @@ const loginAdmin: RequestHandler = async (req, res) => {
 
 }
 
-export { loginAdmin }
+const isAdmin: RequestHandler = async (req, res) => {
+    // If this function can be accessed, it means that this admin is logged in and his token is valid
+    res.status(200).json({
+        status: true,
+        message: true
+    })
+}
+
+export { loginAdmin, isAdmin }
