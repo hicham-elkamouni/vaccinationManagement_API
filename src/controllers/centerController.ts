@@ -6,7 +6,7 @@ import { ICenter } from '@interfaces/index'
 const addCenter = async (req: Request, res: Response) => {
 
     const data = req.body as ICenter
-    console.log(data);
+
     try {
         const doc = new Center(data)
         await doc.save();
@@ -53,8 +53,8 @@ const deleteCenter = async (req: Request, res: Response) => {
 // GET ALL CENTERS
 const getAllCenters = async (req: Request, res: Response) => {
 
-    console.log("inside get all centers method")
     const { area , city} = req.query as { area : string , city : string};
+
     try {
         let docs : ICenter[] = [];
         if(area && city){
@@ -114,9 +114,6 @@ const updateCenter = async (req: Request, res: Response) => {
 
     const { id } = req.params
     const body = req.body
-
-    console.log(body);
-    console.log({id});
 
     try {
         await Center.findOneAndUpdate({_id : id},body);
