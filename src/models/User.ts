@@ -20,11 +20,6 @@ const schema = new Schema<IUser>(
             trim: true,
             unique: true,
         },
-        address: {
-            type: String,
-            required: true,
-            trim: true,
-        },
         email: {
             type: String,
             required: true,
