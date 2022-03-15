@@ -15,7 +15,7 @@ import { Auth } from "@middlewares/index";
 
 router.get("/isManager", Auth("MANAGER"), isManager);
 
-router.get("/getAllCenters", Auth("MANAGER"), getAllCenters);
+router.get("/getAllCenters", getAllCenters);
 router.post("/addCenter", addCenter);
 router.get("/getCenter/:id", getCenter);
 router.delete("/deleteCenter/:id", deleteCenter);
