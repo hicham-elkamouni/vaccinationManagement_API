@@ -53,10 +53,17 @@ const deleteCenter = async (req: Request, res: Response) => {
 // GET ALL CENTERS
 const getAllCenters = async (req: Request, res: Response) => {
 
-    const queryStrings = req.query
+    const { area , city} = req.query as { area : string , city : string};
+
     try {
-        const docs = await Center.find(queryStrings);
-        console.log(docs);
+        let docs : ICenter[] = [];
+        if(area && city){
+            docs = await Center.find({area : area ,city : city });
+            console.log("inside condition")
+        }else{
+            docs = await Center.find({});
+            console.log("inside global results")
+        }
         if (docs.length > 0) {
             return res.status(200).json({
                 status : true,
@@ -107,9 +114,6 @@ const updateCenter = async (req: Request, res: Response) => {
 
     const { id } = req.params
     const body = req.body
-
-    console.log(body);
-    console.log({id});
 
     try {
         await Center.findOneAndUpdate({_id : id},body);

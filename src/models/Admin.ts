@@ -1,21 +1,11 @@
 import { Schema, model } from "mongoose";
-import { IManager } from "@interfaces/index";
+import { IAdmin } from "@interfaces/index";
 import { v4 as uuidv4 } from 'uuid';
 import crypto from 'crypto'
 
-const schema = new Schema<IManager>(
+const schema = new Schema<IAdmin>(
     {
-        lName: {
-            type: String,
-            required: true,
-            trim: true,
-        },
-        fName: {
-            type: String,
-            required: true,
-            trim: true,
-        },
-        area: {
+        userName: {
             type: String,
             required: true,
             trim: true,
@@ -65,4 +55,4 @@ schema.methods = {
     }
 }
 
-export const Manager = model<IManager>("Manager", schema);
+export const Admin = model<IAdmin>("Admin", schema);

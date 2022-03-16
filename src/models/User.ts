@@ -20,17 +20,22 @@ const schema = new Schema<IUser>(
             trim: true,
             unique: true,
         },
-        address: {
-            type: String,
-            required: true,
-            trim: true,
-        },
         email: {
             type: String,
             required: true,
             trim: true,
         },
+        center: {
+            type: String,
+            required: true,
+            trim: true,
+        },
         city: {
+            type: String,
+            required: true,
+            trim: true,
+        },
+        area: {
             type: String,
             required: true,
             trim: true,

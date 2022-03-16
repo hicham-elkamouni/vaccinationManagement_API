@@ -6,7 +6,9 @@ export interface IUser extends Document {
   email: string;
   fName: string;
   lName: string;
+  center: string;
   city: string;
+  area: string;
   nbrPhone: number;
   shotTaken: number;
   diseaseOrTreatments?: string;
@@ -20,7 +22,17 @@ export interface IManager extends Document {
   email: string;
   hashed_password: string;
   salt: string;
-  authenticate:Function
+  authenticate: Function;
+  createdAt:Date
+  updatedAt:Date
+
+}
+export interface IAdmin extends Document {
+  userName: string;
+  email: string;
+  hashed_password: string;
+  salt: string;
+  authenticate: Function
 }
 export interface ICenter extends Document {
   name: string;
